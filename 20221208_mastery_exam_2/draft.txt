@@ -1,0 +1,37 @@
+Tetris is a famous puzzle video game. The objective of the game is to complete lines by moving different shaped pieces (tetromonioes) that falls onto the grid one by one. The scores are calculated by the number of lines completed before the playing grid is filled to the top.
+Given an n x m playing grid (n rows, m columns), your task is to count how many lines are already completed. Each cell is either occupied by a block or empty. A line is considered complete when there is no empty space in the line.
+You are to write a function tetris(grid:list[list[str]]) -> int that returns the number of completed lines where the grid is given as a list of rows and each row is a list of string. Each cell can only be either 'x' or ' '. However, some input grids might be non-rectangle.
+In such case, the function must raise a ValueError with the message non-rectangle grid is invalid.
+Examples:
+
+def check_tetris(grid:list[list[str]], expected_output, exception:bool):
+    ''' Verifies if `tetris` function works correctly '''
+    try:
+       assert tetris(grid) == expected_output
+    except ValueError:
+        return exception
+    if exception:
+        return False
+    return True
+
+    grid1 = [
+    [' ',' ',' ',' ',' '],
+    [' ',' ',' ','x',' '],
+    [' ','x',' ','x',' '],
+    ['x','x','x','x','x'],
+    ['x',' ','x',' ','x'],
+    ['x',' ',' ','x',' '],
+    ['x','x','x','x','x'],
+    ['x','x','x','x','x'],
+    ['x',' ','x','x',' '],
+    ['x','x','x','x','x'],
+]
+check_tetris(grid1, 4, False) # rectangle grid, 4 completed lines
+
+grid2 = [
+    [' ',' ',' '],
+    [' ',' ',' ',' '],
+    [' ','x',' ','x',' '],
+    ['x','x','x','x','x'],
+]
+check_tetris(grid2, 1, True)  # non-rectangle grid, expecting a ValueError
